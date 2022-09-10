@@ -10,7 +10,7 @@ $n_prod = $row1['nom_producto'];
 $mayor = $row1['cantidad_stok'];
 
 $sql = "SELECT producto.id_producto, nom_producto,ref_producto,catg_producto, precio_producto, peso_producto,catg_producto, fecha_creacion, inventario.cantidad_stok FROM producto, inventario WHERE
-inventario.id_producto = producto.id_producto AND producto.estado = 1 AND inventario.cantidad_stok > 0;";
+inventario.id_producto = producto.id_producto AND producto.estado = 1 ";
 $query = mysqli_query($con, $sql);
 
 ?>
@@ -80,19 +80,39 @@ $query = mysqli_query($con, $sql);
 					<td><?php echo $categoria; ?></td>
 					<td><?php echo $cantidad; ?></td>
 					<td><?php echo $f_registro; ?></td>
-					<td>
-						<button type="button" class="btn btn-success">
-							<span class="pull-right">
-								<a href="#" class='btn btn-default' title='Vender' onclick="venta('<?php echo $id; ?>','<?php echo $cantidad; ?>','<?php echo $nombre; ?>')">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-										<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
-										<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-									</svg>
-								</a>
-							</span>
-						</button>
-					</td>
 
+
+					<?php
+					if ($cantidad == 0) {
+					?>
+						<td>
+							<button type="button" class="btn btn-success" disaddled>
+								<span class="pull-right">
+									No disponible
+								</span>
+							</button>
+						</td>
+					<?php
+					}
+					?>
+					<?php
+					if ($cantidad != 0) {
+					?>
+						<td>
+							<button type="button" class="btn btn-success">
+								<span class="pull-right">
+									<a href="#" class='btn btn-default' title='Vender' onclick="venta('<?php echo $id; ?>','<?php echo $cantidad; ?>','<?php echo $nombre; ?>')">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+											<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
+											<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+										</svg>
+									</a>
+								</span>
+							</button>
+						</td>
+					<?php
+					}
+					?>
 					<td>
 						<button type="button" class="btn btn-info">
 							<span class="pull-right">
