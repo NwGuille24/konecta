@@ -9,7 +9,7 @@ error_reporting(0);
 	$canti = $_POST["cantidad_v"];   
 
 
-	$sql = "SELECT cantidad_stok FROM inventario WHERE id_producto = '$id' AND cantidad_stok > '$canti'";
+	$sql = "SELECT cantidad_stok FROM inventario WHERE id_producto = '$id' AND cantidad_stok >= '$canti'";
 	$query = mysqli_query($con, $sql);
 	$row = mysqli_fetch_array($query);
 	$cantidad = $row['cantidad_stok'];	 
