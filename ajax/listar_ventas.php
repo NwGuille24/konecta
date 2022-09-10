@@ -2,12 +2,12 @@
 require_once("../conectar/db.php");
 require_once("../conectar/conexion.php");
 
-$max = "SELECT  producto.nom_producto, ventas.catidad_prod From inventario, ventas, producto WHERE ventas.id_inventario = inventario.id_inventario AND inventario.id_producto = producto.id_producto ORDER BY catidad_prod DESC LIMIT 1";
+$max = "SELECT ventas.id_inventario, SUM(catidad_prod) AS total, producto.nom_producto  FROM ventas, producto, inventario WHERE ventas.id_inventario = inventario.id_inventario AND  inventario.id_producto = producto.id_producto GROUP BY id_inventario ORDER BY total DESC  LIMIT 1";
 $query_max = mysqli_query($con, $max);
 $row1 = mysqli_fetch_array($query_max);
 
 $n_prod = $row1['nom_producto'];
-$mayor = $row1['catidad_prod'];
+$mayor = $row1['total'];
 
 $sql = "SELECT ventas.id_inventario, catidad_prod, producto.nom_producto, fecha_venta FROM ventas, producto, inventario WHERE ventas.id_inventario = inventario.id_inventario AND inventario.id_producto = producto.id_producto";
 $query = mysqli_query($con, $sql);
@@ -33,7 +33,7 @@ $query = mysqli_query($con, $sql);
 	<h4>
 		El producto con mas unidades vendidas es: <?php echo $n_prod ?>
 		<br>
-		con<?php echo $mayor ?> unidades
+		con <?php echo $mayor ?> unidades
 	</h4>
 </div>
 <div class="table-responsive">
