@@ -2,7 +2,7 @@
 require_once("../conectar/db.php");
 require_once("../conectar/conexion.php");
 
-$max = "SELECT inventario.id_producto, producto.nom_producto, cantidad_stok From inventario,producto WHERE inventario.id_producto = producto.id_producto ORDER BY cantidad_stok DESC LIMIT 1";
+$max = "SELECT inventario.id_producto, producto.nom_producto, cantidad_stok From inventario,producto WHERE inventario.id_producto = producto.id_producto AND producto.estado = 1 ORDER BY cantidad_stok DESC LIMIT 1";
 $query_max = mysqli_query($con, $max);
 $row1 = mysqli_fetch_array($query_max);
 
