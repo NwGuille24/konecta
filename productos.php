@@ -13,7 +13,7 @@
 
 <body>
 	<div class="container" style="margin-top: 60px;">
-		<div class="panel panel-" style="background: #f0f3f1;  box-shadow: 0em 0 2.4em #9e9e9e;     padding: 5%;">
+		<div class="panel panel-" style="background: #f0f3f1;  box-shadow: 0em 0 2.4em #9e9e9e;     padding: 3%;">
 			<div class="panel-heading">
 
 				<div class="row">
