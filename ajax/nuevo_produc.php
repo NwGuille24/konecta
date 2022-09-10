@@ -15,8 +15,15 @@
 	VALUES ('$nombre','$detalle', '$precio', '$peso', '$categoria')";
 	$query_new_insert = mysqli_query($con,$sql);
 
+	$sql = "SELECT MAX(id_producto) AS ulti FROM producto";
+	$query = mysqli_query($con, $sql);
+	$row = mysqli_fetch_array($query);
+	$ultimo = $row['ulti'];
+
+	$id_prod =$ultimo + 1;
+
 	$sql2="INSERT INTO   inventario (id_producto,cantidad_stok) 
-	VALUES (1,'$cantidad')";
+	VALUES ('$id_prod','$cantidad')";
 	$query_new_insert2 = mysqli_query($con,$sql2);
 
 	$sql3="INSERT INTO   cambios (tipo, id_producto) 
