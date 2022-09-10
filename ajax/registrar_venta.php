@@ -3,6 +3,7 @@
 	require_once ("../conectar/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../conectar/conexion.php");//Contiene funcion que conecta a la base de datos
 
+error_reporting(0);
 
 	$id = $_POST["id_pv"];   
 	$canti = $_POST["cantidad_v"];   
