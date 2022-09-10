@@ -11,8 +11,8 @@
 	$categoria = $_POST["categoria"];   
 	$cantidad = $_POST["cantidad"];   
 	
-	$sql="INSERT INTO   producto (nom_producto,ref_producto, precio_producto, peso_producto,catg_producto) 
-	VALUES ('$nombre','$detalle', '$precio', '$peso', '$categoria')";
+	$sql="INSERT INTO   producto (nom_producto,ref_producto, precio_producto, peso_producto,catg_producto, estado) 
+	VALUES ('$nombre','$detalle', '$precio', '$peso', '$categoria', 1)";
 	$query_new_insert = mysqli_query($con,$sql);
 
 	$sql = "SELECT MAX(id_producto) AS ulti FROM producto";
